@@ -1,0 +1,1 @@
+<link rel="icon" href="${pageContext.servletContext.contextPath }/assets/images/favicon.ico" type="image/x-icon" />
