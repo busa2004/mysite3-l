@@ -41,8 +41,8 @@ public class BoardController {
 	}
 
 	@RequestMapping("/view")
-	public String view(HttpServletRequest request, HttpServletResponse response, String no, Model model) {
-		return boardService.view(request, response, no, model);
+	public String view(HttpServletRequest request, HttpServletResponse response, Model model,BoardVo vo) {
+		return boardService.view(request, response, model,vo);
 	}
 
 	@RequestMapping("/remove")

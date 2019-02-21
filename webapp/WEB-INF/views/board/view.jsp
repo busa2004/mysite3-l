@@ -130,7 +130,7 @@ $(function(){
 				<!-- 댓글 생성  -->
 				
 				<div class="bottom">
-					<a href="${pageContext.servletContext.contextPath}/board">글목록</a>
+					<a href="${pageContext.servletContext.contextPath}/board?page=${bo.page}&movePage=${bo.movePage}&kwd=${bo.kwd}">글목록</a>
 					<c:if test='${vo.userNo eq authuser.no }'>
 					<a href="${pageContext.servletContext.contextPath}/board/modify?no=${vo.no}">글수정</a> <!-- 자기글 판단 -->
 					

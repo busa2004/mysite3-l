@@ -149,36 +149,42 @@ public class BoardService {
 		System.out.println(saveDir + "\\" + vo.getFileName());
 	}
 
-	public String view(HttpServletRequest request, HttpServletResponse response, String no, Model model) {
+	public String view(HttpServletRequest request, HttpServletResponse response,Model model, BoardVo bo) {
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		BoardVo vo = boardDao.getVo(Long.parseLong(no));
+		BoardVo vo = boardDao.getVo(bo.getNo());
 		model.addAttribute("vo", vo);
-		List<CommentVo> commentList = commentDao.getList(Long.parseLong(no));
+		List<CommentVo> commentList = commentDao.getList(bo.getNo());
 		model.addAttribute("commentList", commentList);
 		if (vo.getFileName() != null) {
 			model.addAttribute("filePath", "Upload/" + vo.getFileName());
 			model.addAttribute("fileName", vo.getFileName());
 		}
+		
+		
+		model.addAttribute("bo", bo);
+		
+		
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (int i = 0; i < cookies.length; i++) {
 				Cookie c = cookies[i];
 				String cValue = c.getValue();
-				if (cValue.equals(no)) {
+				if (cValue.equals(Long.toString(bo.getNo()))) {
 					return "/board/view";
 				}
 
 			}
 		}
-		Cookie c = new Cookie(no, no);
+		Cookie c = new Cookie(Long.toString(bo.getNo()),Long.toString(bo.getNo()));
 		c.setComment("게시물 번호");
 		c.setMaxAge(60 * 60 * 24);
 		response.addCookie(c);
-		boardDao.update(Long.parseLong(no));// 조회수증가
+		boardDao.update(bo.getNo());// 조회수증가
+		
 		return "/board/view";
 	}
 

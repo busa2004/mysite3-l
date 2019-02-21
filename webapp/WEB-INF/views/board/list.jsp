@@ -9,7 +9,9 @@
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="${pageContext.servletContext.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
-
+<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-1.9.0.js"></script>
+<script>
+</script>
 </head>
 <body>
 	<div id="container">
@@ -42,7 +44,7 @@
 						<c:if test='${vo.depth ne 0 }'>
 						<img src="assets/images/reply.png"/>
 						</c:if>
-						<a href="${pageContext.servletContext.contextPath}/board/view?no=${vo.no}">${vo.title}</a></td>
+						<a id="view" href="${pageContext.servletContext.contextPath}/board/view?no=${vo.no}&page=${page+1}&movePage=${movePage}&kwd=${kwd}">${vo.title}</a></td>
 						<td>${ vo.userName}</td>
 						<td>${ vo.hit}</td>
 						<td>${ vo.writeDate}</td>
@@ -75,7 +77,7 @@
 						<li class="selected">${i}</li>
 						</c:when>
 						<c:otherwise>
-						<li><a href="${pageContext.servletContext.contextPath}/board?page=${i}&movePage=${movePage}&kwd=${kwd}">${i}</a></li>
+						<li><a  id="move" href="${pageContext.servletContext.contextPath}/board?page=${i}&movePage=${movePage}&kwd=${kwd}">${i}</a></li>
 						</c:otherwise>
 						</c:choose>
 						</c:when>
