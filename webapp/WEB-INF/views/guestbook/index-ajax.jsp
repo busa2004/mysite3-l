@@ -79,7 +79,7 @@ var fetchList = function(){
 	}
 	++page;
 	$.ajax({
-		url:"/mysite2/api/guestbook?a=ajax-list&p="+page,
+		url:"/mysite3/guestbook/ajax/list?p="+page,
 		type:"get",
 		dataType:"json",
 		data:"",
@@ -127,7 +127,7 @@ $(function(){
 				
 				
 				$.ajax({
-					url:"/mysite2/api/guestbook?a=ajax-delete&no="+no+"&password="+$("#password-delete").val(),
+					url:"/mysite3/guestbook/ajax/delete?no="+no+"&password="+$("#password-delete").val(),
 					type:"get",
 					dataType:"json",
 					data:"",
@@ -214,7 +214,7 @@ $(function(){
 		}
 		
 		$.ajax({
-			url:"/mysite2/api/guestbook?a=ajax-insert&name="+name+"&password="+password+"&message="+message,
+			url:"/mysite3/guestbook/ajax/insert?name="+name+"&password="+password+"&message="+message,
 			type:"get",
 			dataType:"json",
 			data:"",

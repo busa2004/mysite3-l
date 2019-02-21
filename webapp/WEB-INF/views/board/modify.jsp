@@ -12,6 +12,28 @@
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="${pageContext.servletContext.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-1.9.0.js"></script>
+<script>
+$(function(){
+	$("#board-form").submit(function(){
+		if($("#title").val() == ""){
+			alert("제목은 필수 입력 항목입니다.");
+			$("#title").focus();
+			return false;
+		}
+		
+		if($("#contents").val() == ""){
+			alert("내용 필수 입력 항목입니다.");
+			$("#contents").focus();
+			return false;
+		}
+		
+		
+		
+		return true;
+	});
+});
+</script>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +47,7 @@
 						</tr>
 						<tr>
 							<td class="label">제목</td>
-							<td><input type="text" name="title" value="${vo.title}"></td>
+							<td><input type="text" name="title" id="title" value="${vo.title}"></td>
 						</tr>
 						<tr>
 							<td class="label">내용</td>

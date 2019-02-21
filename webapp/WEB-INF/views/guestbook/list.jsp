@@ -14,18 +14,44 @@
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="${pageContext.servletContext.contextPath }/assets/css/guestbook.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-1.9.0.js"></script>
+<script>
+$(function(){
+	$("#guestbook-form").submit(function(){
+		if($("#name").val() == ""){
+			alert("이름은 필수 입력 항목입니다.");
+			$("#name").focus();
+			return false;
+		}
+		
+		if($("#password").val() == ""){
+			alert("비밀번호는 필수 입력 항목입니다.");
+			$("#password").focus();
+			return false;
+		}
+		
+		if($("textarea").val() == ""){
+			alert("내용은 필수 입력 항목입니다.");
+			$("textarea").focus();
+			return false;
+		}
+		
+		return true;
+	});
+});
+</script>
 </head>
 <body>
 	<div id="container">
 	<c:import url="/WEB-INF/views/includes/header.jsp"/>
 		<div id="content">
 			<div id="guestbook">
-				<form action="${pageContext.servletContext.contextPath }/guestbook/add" method="post">
+				<form  id="guestbook-form" action="${pageContext.servletContext.contextPath }/guestbook/add" method="post">
 					<input type="hidden" name="a" value="add">
 					<table>
 						<tr>
-							<td>이름</td><td><input type="text" name="name"></td>
-							<td>비밀번호</td><td><input type="password" name="password"></td>
+							<td>이름</td><td><input type="text" name="name" id="name"></td>
+							<td>비밀번호</td><td><input type="password" name="password" id="password"></td>
 						</tr>
 						<tr>
 							<td colspan=4><textarea name="message" id="content"></textarea></td>

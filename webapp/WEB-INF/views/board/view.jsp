@@ -21,6 +21,24 @@ textarea{
 width:100%;
 }
 </style>
+<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-1.9.0.js"></script>
+<script>
+$(function(){
+	$("#board-form").submit(function(){
+
+		
+		if($("#contents").val() == ""){
+			alert("내용 필수 입력 항목입니다.");
+			$("#contents").focus();
+			return false;
+		}
+		
+		
+		
+		return true;
+	});
+});
+</script>
 </head>
 <body>
 	<div id="container">
@@ -46,8 +64,7 @@ width:100%;
 					
 					<c:if test="${fileName ne ''}">
 					<tr>
-					<td colspan="2"><img src="${filePath}"></td>
-					
+					<td colspan="2"><img src="${pageContext.servletContext.contextPath}/${filePath}"></td>
 					</tr>
 					<tr>
 					<td colspan="2"><a href="${pageContext.servletContext.contextPath}/board/download?fileName=${fileName}">다운로드</a></td>
@@ -57,7 +74,7 @@ width:100%;
 				</table>
 				
 				<!-- 댓글 생성  -->
-				<form class="board-form" method="post" action="${pageContext.servletContext.contextPath}/board/comment?authUserNo=${authuser.no}&boardNo=${vo.no}">
+				<form class="board-form" method="post" action="${pageContext.servletContext.contextPath}/board/comment?userNo=${authuser.no}&boardNo=${vo.no}">
 				<ul>
 					
 					<li>
@@ -77,7 +94,7 @@ width:100%;
 							
 							
 							<tr>
-							<td colspan="4"><textarea name="contents" ></textarea></td>
+							<td colspan="4"><textarea name="contents" id="contents"></textarea></td>
 							</tr>
 							</c:if>
 							<!--  -->
